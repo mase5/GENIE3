@@ -42,5 +42,6 @@ weight.matrix<-GENIE3(data.matrix, regulators=inputTFs, cluster = psc, progress 
 ```
 NOTE: [machine-address-1] should be the address where the R script is started
 
-![Progress](https://github.com/mase5/GENIE3/tree/mnp_pb_features/images/progress.gif)
+![alt text](https://raw.githubusercontent.com/mase5/GENIE3/mnp_pb_features/images/progress.gif)
+
 
