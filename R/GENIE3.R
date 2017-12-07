@@ -158,7 +158,8 @@ setMethod("GENIE3", "ExpressionSet",
       cluster<-open_PSC(user = cluster$config$def$user, nodes = cluster$config$def$nodes, n.cores = cluster$config$def$n.cores, verbose = cluster$config$def$verbose)
       
     } else if(cluster$config$type == "psc") {
-      cluster <- cluster$config$def$cluster
+      # cluster <- cluster$config$def$cluster
+      stop("This feature is currently not implemented.")
     } else {
       stop("The given cluster object is invalid!")
     }
