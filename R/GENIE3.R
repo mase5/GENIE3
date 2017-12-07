@@ -68,6 +68,12 @@ setMethod("GENIE3", "ExpressionSet",
 {
   .checkArguments(exprMatrix=exprMatrix, treeMethod=treeMethod, K=K, nTrees=nTrees, regulators=regulators, targets=targets, nCores=nCores, cluster=cluster, progress=progress, verbose=verbose)
   
+  # Load the libraries for parallelism
+  library(doSNOW)
+  library(doRNG)
+  library(foreach)
+  library(doParallel)
+  
   if(is.numeric(regulators)) regulators <- rownames(exprMatrix)[regulators]
   
   ############################################################
@@ -145,9 +151,7 @@ setMethod("GENIE3", "ExpressionSet",
   colnames(weightMatrix) <- targetNames
   
   # compute importances for every target gene
-  library(doSNOW)
-  library(doRNG)
-  library(foreach)
+  
   if(!is.null(cluster)) {
     
     if(cluster$config$type == "raw") {
