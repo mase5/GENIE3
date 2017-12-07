@@ -37,7 +37,7 @@ install.packages(c("stats", "reshape2", "doSNOW", "doRNG", "foreach", "doParalle
 Here is a snippet:
 ```
 # Define the cluster configuration
-psc<-list(config=list(type="raw", "def"=list(user = "userid", nodes = c("[machine-address-1]","[machine-address-2]"), n.cores = c([n-cores-1],[n-cores-2]), verbose = T)))
+psc<-list(config=list(type="raw", "def"=list(user = "[user-id]", nodes = c("[machine-address-1]","[machine-address-2]"), n.cores = c([n-cores-1],[n-cores-2]), verbose = T)))
 weight.matrix<-GENIE3(data.matrix, regulators=inputTFs, cluster = psc, progress = T, verbose=TRUE)
 ```
 NOTE: [machine-address-1] should be the address where the R script is started
