@@ -178,7 +178,7 @@ setMethod("GENIE3", "ExpressionSet",
                              , permutation.importance = permutation_importance)
     if(cluster$config$type == "raw") {
       # Close the PS cluster
-      close_PSC(cluster = cluster, verbose = T)
+      close_PSC(cluster = cluster$config$def$cluster, verbose = T)
     }
   } else if(nCores==1)
   {
