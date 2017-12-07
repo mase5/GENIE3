@@ -5,7 +5,8 @@
 \title{GENIE3}
 \usage{
 GENIE3(exprMatrix, treeMethod = "RF", K = "sqrt", nTrees = 1000,
-  regulators = NULL, targets = NULL, nCores = 1, verbose = FALSE)
+  regulators = NULL, targets = NULL, nCores = 1, cluster = NULL, 
+  progress = FALSE, verbose = FALSE)
 }
 \arguments{
 \item{exprMatrix}{Expression matrix (genes x samples). Every row is a gene, every column is a sample.
@@ -26,6 +27,10 @@ The expression matrix can also be provided as one of the Bioconductor classes:
 \item{targets}{Subset of genes to which potential regulators will be calculated. Must be either a vector of indices, e.g. \code{c(1,5,6,7)}, or a vector of gene names, e.g. \code{c("at_12377", "at_10912")}. If NULL (default), regulators will be calculated for all genes in the input matrix.}
 
 \item{nCores}{Number of cores to use for parallel computing. Default: 1.}
+
+\item{cluster}{Cluster for parallel computing on multiple nodes. Default: NULL.}
+
+\item{progress}{Monitor the progression of the computation. Default: FALSE.}
 
 \item{verbose}{If set to TRUE, a feedback on the progress of the calculations is given. Default: FALSE.}
 }
