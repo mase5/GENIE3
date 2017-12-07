@@ -155,11 +155,11 @@ setMethod("GENIE3", "ExpressionSet",
       source("https://raw.githubusercontent.com/mase5/r-utils/master/parallel_utils.R")
       # Build the cluster
       message("Building the PS cluster...")
-      cluster<-open_PSC(user = cluster$config$def$user, nodes = cluster$config$def$nodes, n.cores = cluster$config$def$n.cores, verbose = cluster$config$def$verbose)
-      
+      cl <- open_PSC(user = cluster$config$def$user, nodes = cluster$config$def$nodes, n.cores = cluster$config$def$n.cores, verbose = cluster$config$def$verbose)
+      cl.c <- cluster$config$def$cluster
     } else if(cluster$config$type == "psc") {
-      # cluster <- cluster$config$def$cluster
-      stop("This feature is currently not implemented.")
+      message("Please make sure that the PSC is closed after all computations are done!")
+      cl.c <- cluster$config$def$cluster
     } else {
       stop("The given cluster object is invalid!")
     }
@@ -179,7 +179,8 @@ setMethod("GENIE3", "ExpressionSet",
                              , permutation.importance = permutation_importance)
     if(cluster$config$type == "raw") {
       # Close the PS cluster
-      close_PSC(cluster = cluster$config$def$cluster, verbose = T)
+      message("Closing the PS cluster...")
+      close_PSC(cluster = cl.c, verbose = T)
     }
   } else if(nCores==1)
   {
