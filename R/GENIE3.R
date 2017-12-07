@@ -156,7 +156,7 @@ setMethod("GENIE3", "ExpressionSet",
       # Build the cluster
       message("Building the PS cluster...")
       cl <- open_PSC(user = cluster$config$def$user, nodes = cluster$config$def$nodes, n.cores = cluster$config$def$n.cores, verbose = cluster$config$def$verbose)
-      cl.c <- cluster$config$def$cluster
+      cl.c <- cl$config$def$cluster
     } else if(cluster$config$type == "psc") {
       message("Please make sure that the PSC is closed after all computations are done!")
       cl.c <- cluster$config$def$cluster
