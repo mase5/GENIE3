@@ -12,4 +12,11 @@ install.packages("https://bioconductor.org/packages/devel/bioc/src/contrib/GENIE
 install.packages(c("stats", "reshape2"))
 ```
 
+To install GENIE3 (with multi-node parallelism and progress bar features), you can run the following commands from R:
+```
+install_git("git://github.com/mase5/GENIE3.git", branch = "mnp_pb_features")
+
+# You might need to install these packages first:
+install.packages(c("stats", "reshape2"))
+
 
