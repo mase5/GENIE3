@@ -45,6 +45,8 @@ library(GENIE3)
 set.seed(123) # For reproducibility of results
 weightMat <- GENIE3(exprMatr)
 ```
+
+
 ```{r}
 dim(weightMat)
 weightMat[1:5,1:5]
