@@ -156,7 +156,6 @@ setMethod("GENIE3", "character",
   
   nGenes<-length(targetNames)
   
-  total<-length(target.names)
   print(paste0("Number of targets to predict: ", nGenes))
   
   # tree method
@@ -284,7 +283,7 @@ setMethod("GENIE3", "character",
       stop("Invalid job configuration.")
     }
     
-    if(job.config$hpc.env == "Rhpc") {
+    if(job.config$env == "Rhpc") {
       tic()
       # Load the libraries
       library(Rhpc)
@@ -301,6 +300,8 @@ setMethod("GENIE3", "character",
       queue.name<-job.config$monitor$queue.name
       task.name<-job.config$monitor$task.name
       progress.key<-stringi::stri_rand_strings(1, 10)
+      # Reset
+      progress$step(newvalue = 0)
       
       print("Creating new progress...")
       # Create the progress object
@@ -381,7 +382,9 @@ setMethod("GENIE3", "character",
       progress$message(msg = "GENIE3 (Rhpc) completed!")
       print(paste0("Saving as matrix... ", job.config$data$out.path))
       print(weightMatrix.reg[1:5,1:5])
-      saveRDS(object = weightMatrix.reg, file = job.config$data$out.path, compress = T)
+      # Update the annotated empty weight matrix
+      weight.matrix[regulatorNames,]<-weightMatrix.reg[regulatorNames,] 
+      saveRDS(object = weight.matrix, file = job.config$data$out.path, compress = T)
       Rhpc_finalize()
     } else {
       # weightMatrix.reg<-mnp(l = target.names, f = function(targetName) {
