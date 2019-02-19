@@ -300,14 +300,15 @@ setMethod("GENIE3", "character",
       queue.name<-job.config$monitor$queue.name
       task.name<-job.config$monitor$task.name
       progress.key<-stringi::stri_rand_strings(1, 10)
-      # Reset
-      progress$step(newvalue = 0)
       
       print("Creating new progress...")
       # Create the progress object
       progress<-create_redis_progress(name = queue.name, redis=redis)
       progress$start(taskname = task.name, steps = length(x = target.names))
   
+      # Reset
+      progress$step(newvalue = 0)
+      
       ENV<-environment()
       ENV$.setMtry<-.GlobalEnv$.setMtry
   
